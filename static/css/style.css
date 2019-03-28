@@ -1,0 +1,36 @@
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    background: rgb(12,17,98);
+    background: linear-gradient(0deg, rgba(12,17,98,0.8550770650056898) 0%, rgba(9,9,121,0.8130602582830007) 42%, rgba(0,212,255,0.9251050762101716) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.speech input {
+    height: 40px;
+}
+.speech img {
+    position: absolute;
+    right: 15px;
+    top: 0;
+    cursor: pointer;
+    width: 40px 
+}
+
+.btn-primary {
+    margin-top: 10px;
+    width: 70%;
+    -webkit-box-shadow: 0px 0px 11px 1px rgba(79,77,79,1);
+    -moz-box-shadow: 0px 0px 11px 1px rgba(79,77,79,1);
+    box-shadow: 0px 0px 11px 1px rgba(79,77,79,1);
+}
+
+img {
+    max-width: 225px;
+}

@@ -1,5 +1,60 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-<h1>Inital setup done.</h1>
+<div class="container">
+
+    <div class="header">
+    
+        <h1 class="text-center">Make your search</h1>
+
+        <form id="labnol" action="" method="GET">
+            <div class="row">
+                <div class="col-xs-11 col-sm-8 col-md-6 col-lg-4 mx-auto speech">
+                    <input type="text" name="item" class="form-control" id="transcript" required placeholder="Search items">
+                    <img onclick="startDictation()" src="{% static 'images/mic.gif' %}" />
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4 mx-auto text-center">Price range (optional):</div>
+            </div>
+            <div class="row">
+                    <div class="col-xs-2 col-sm-4 col-md-3 col-lg-2 ml-auto pt-2">
+                        <input type="text" class="form-control" name="from" id="price-low" placeholder="From">
+                    </div>
+                    <div class="col-xs-2 col-sm-4 col-md-3 col-lg-2 mr-auto pt-2">
+                        <input type="text" class="form-control" name="to" id="price-high" placeholder="To">
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-11 col-sm-8 col-md-6 col-lg-4 mx-auto text-center">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+    <hr>
+    {% if items %}
+        <table>
+        {% for item in items %}
+        <tr>
+            <td>
+                <a href="{{item.link}}">{{ item.name }}</a>
+            </td>
+            <td>
+                {{ item.condition }}
+            </td>
+            <td>
+                {{ item.price }}
+            </td>
+            <td>
+                <img src="{{ item.image }}" alt="">
+            </td>
+        </tr>
+            
+        {% endfor %}
+        </table>
+    {% endif %}
+</div>
 {% endblock %}

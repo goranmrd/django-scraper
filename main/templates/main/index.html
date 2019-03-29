@@ -16,7 +16,7 @@
             </div>
             
             <div class="row">
-                <div class="col-md-4 mx-auto text-center">Price range (optional):</div>
+                <div class="col-md-4 mx-auto text-center price-range">Price range (optional):</div>
             </div>
             <div class="row">
                     <div class="col-xs-2 col-sm-4 col-md-3 col-lg-2 ml-auto pt-2">
@@ -36,25 +36,20 @@
     </div>
     <hr>
     {% if items %}
-        <table>
-        {% for item in items %}
-        <tr>
-            <td>
-                <a href="{{item.link}}">{{ item.name }}</a>
-            </td>
-            <td>
-                {{ item.condition }}
-            </td>
-            <td>
-                {{ item.price }}
-            </td>
-            <td>
-                <img src="{{ item.image }}" alt="">
-            </td>
-        </tr>
-            
-        {% endfor %}
-        </table>
+        <div class="row">
+            {% for item in items %}
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 pb-2 d-flex align-items-stretch justify-content-center">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{ item.image }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{{item.link}}" target="_blank">{{ item.name }}</a></h5>
+                        <p class="card-text">{{ item.condition }}</p>
+                        <p class="card-text">Price: <strong>US {{ item.price }}</strong></p>
+                    </div>
+                </div>
+            </div>                      
+            {% endfor %}
+        </div>
     {% endif %}
 </div>
 {% endblock %}

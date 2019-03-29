@@ -28,15 +28,15 @@ class Index(ListView):
                 url = base_url.format(item=item)
             scraper = Scraper(base_url=url)
             app = scraper.run()
-        print(self.queryset)
-        return self.queryset
+            return app
 
 
 class Scraper(Index):
     def __init__(self, base_url=None):
         super(Scraper, self).__init__()
-
+        
         self.base_url = base_url
+        self.queryset[:] = []
 
     def run(self):
         
@@ -46,6 +46,8 @@ class Scraper(Index):
                 rows = bs.find_all('div', class_="s-item__wrapper")[:10]
                 for parser in rows:
                     self.parse_rows(parser)
+            else:
+                print(bs['error'])
         except Exception as error:
             print(error)
         return self.queryset
@@ -59,14 +61,12 @@ class Scraper(Index):
         if image == 'https://ir.ebaystatic.com/cr/v/c1/s_1x2.gif':
             soup = self.make_soup(link)
             image = soup.find('img', {'id': "icImg"}).get('src')
-        print(self.queryset)
         self.queryset.append(dict(name=name,link=link,condition=condition,price=price,image=image))
 
     def make_soup(self, url):
         headers = {'Accept': '*/*',
                    'Accept-Encoding': 'gzip, deflate, sdch',
                    'Accept-Language': 'en-US,en;q=0.8',
-                   'content-security-policy': "media-src 'self' *.ebaystatic.com; font-src 'self' *.ebaystatic.com",
                    'Cache-Control': 'max-age=0',
                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
         

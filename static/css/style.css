@@ -7,7 +7,7 @@ body {
     margin: 0;
     height: 100%;
     background: rgb(12,17,98);
-    background: linear-gradient(0deg, rgba(12,17,98,0.8550770650056898) 0%, rgba(9,9,121,0.8130602582830007) 42%, rgba(0,212,255,0.9251050762101716) 100%);
+background: linear-gradient(0deg, rgba(12,17,98,0.8550770650056898) 0%, rgba(9,9,121,0.8130602582830007) 6%, rgba(0,212,255,0.9251050762101716) 100%);
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -31,6 +31,7 @@ body {
     box-shadow: 0px 0px 11px 1px rgba(79,77,79,1);
 }
 
-img {
-    max-width: 225px;
+h1, .price-range { 
+    font-family: 'Kalam', cursive;
+    padding-top: 15px;
 }

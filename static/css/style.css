@@ -7,7 +7,7 @@ body {
     margin: 0;
     height: 100%;
     background: rgb(12,17,98);
-background: linear-gradient(0deg, rgba(12,17,98,0.8550770650056898) 0%, rgba(9,9,121,0.8130602582830007) 6%, rgba(0,212,255,0.9251050762101716) 100%);
+    background: linear-gradient(0deg, rgba(12,17,98,0.8550770650056898) 0%, rgba(9,9,121,0.8130602582830007) 6%, rgba(0,212,255,0.9251050762101716) 100%);
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -34,4 +34,23 @@ background: linear-gradient(0deg, rgba(12,17,98,0.8550770650056898) 0%, rgba(9,9
 h1, .price-range { 
     font-family: 'Kalam', cursive;
     padding-top: 15px;
+}
+
+.card {
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+    transition: all .5s ease;
+}
+
+.card:hover {
+    webkit-box-shadow: 3px 3px 8px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 8px 1px rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 8px 1px rgba(0,0,0,0.75);
+    transform: scale(1.1);
+    z-index: 999;
+}
+
+.items {
+    padding-bottom: 25px;
 }

@@ -9,11 +9,13 @@ class Index(ListView):
     context_object_name = "items"
     template_name = "main/index.html"
 
+    # 2. Pass queryset to templates
     def get_context_data(self, *args, **kwargs):
         context = super(Index, self).get_context_data(*args, **kwargs)
         context['queryset'] = self.queryset
         return context    
-
+    
+    # 1. Get search form data, scrape results and pass it to queryset
     def get_queryset(self):
         base_url = "https://www.ebay.com/sch/parser.html?_from=R40&_nkw={item}&_ipg=25"
         prices_url = "&_udlo={price_low}&_udhi={price_high}"
@@ -38,12 +40,14 @@ class Scraper(Index):
         self.base_url = base_url
         self.queryset[:] = []
 
+    # Start scraping 
     def run(self):
-        
         try:
+            # 2. Create soup with make_soup method (bs = BeautifulSoup)
             bs = self.make_soup(self.base_url)
             if not bs.get('error'):
                 rows = bs.find_all('div', class_="s-item__wrapper")[:10]
+                # 2.1 Loop through soup rows and parse them with parse_rows method
                 for parser in rows:
                     self.parse_rows(parser)
             else:
@@ -52,6 +56,7 @@ class Scraper(Index):
             print(error)
         return self.queryset
     
+    # 3. Parse soup from make_soup method
     def parse_rows(self, parser):
         name = parser.find('h3', class_="s-item__title").text
         link = parser.find('a', class_="s-item__link").get('href')
@@ -63,6 +68,7 @@ class Scraper(Index):
             image = soup.find('img', {'id': "icImg"}).get('src')
         self.queryset.append(dict(name=name,link=link,condition=condition,price=price,image=image))
 
+    # 1. Make soup method
     def make_soup(self, url):
         headers = {'Accept': '*/*',
                    'Accept-Encoding': 'gzip, deflate, sdch',

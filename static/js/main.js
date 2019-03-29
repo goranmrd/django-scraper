@@ -25,7 +25,7 @@ function startDictation() {
     }
   }
 
-// remove URL parameters ?  
+// remove URL parameters ?
 $(document).ready(function(){
     var uri = window.location.toString();
     if (uri.indexOf("?") > 0) {

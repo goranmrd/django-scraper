@@ -101,6 +101,36 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
+import logging
+logger = logging.getLogger(__name__)
+
+import logging.config
+from django.utils.log import DEFAULT_LOGGING
+LOGGING_CONFIG = None
+logging.config.dictConfig({
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'django.server': DEFAULT_LOGGING['formatters']['django.server'],
+        'console': {
+            # exact format is not important, this is the minimum information
+            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+        },
+    },
+    'handlers': {
+        'django.server': DEFAULT_LOGGING['handlers']['django.server'],
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'console',
+        },
+    },
+    'loggers': {
+        'django.server': DEFAULT_LOGGING['loggers']['django.server'],
+    },
+})
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 

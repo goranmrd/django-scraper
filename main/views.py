@@ -2,13 +2,13 @@ from django.shortcuts import render
 from django.views.generic import ListView
 import requests
 from bs4 import BeautifulSoup
-from multiprocessing import cpu_count, Pool
+
 
 class Index(ListView):
     queryset = []
     context_object_name = "items"
     template_name = "main/index.html"
-
+  
     # 2. Pass queryset to templates
     def get_context_data(self, *args, **kwargs):
         context = super(Index, self).get_context_data(*args, **kwargs)

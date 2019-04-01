@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'iaf15m-v6lmpp_^&mv41g7yzmh+^!ru-m4(1kn3l+njd3#m1)5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -101,7 +101,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-
+# Show log info from error to console in production
 import logging
 logger = logging.getLogger(__name__)
 

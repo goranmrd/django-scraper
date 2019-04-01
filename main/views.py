@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views.generic import ListView
 import requests
 from bs4 import BeautifulSoup
@@ -13,7 +12,7 @@ class Index(ListView):
     def get_context_data(self, *args, **kwargs):
         context = super(Index, self).get_context_data(*args, **kwargs)
         context['queryset'] = self.queryset
-        return context    
+        return context
     
     # 1. Get search form data, scrape results and pass it to queryset
     def get_queryset(self):
@@ -58,10 +57,24 @@ class Scraper(Index):
     
     # 3. Parse soup from make_soup method
     def parse_rows(self, parser):
-        name = parser.find('h3', class_="s-item__title").text
-        link = parser.find('a', class_="s-item__link").get('href')
-        condition = parser.find('span', class_="SECONDARY_INFO").text
-        price = parser.find('span', class_="s-item__price").text
+        name = parser.find('h3', class_="s-item__title")
+        if name:
+            name = name.text
+        else:
+            name = ' '
+        link = parser.find('a', class_="s-item__link")
+        if link:
+            link = link.get('href')
+        else:
+            link = ' '
+        condition = parser.find('span', class_="SECONDARY_INFO")
+        if condition:
+            condition = condition.text
+        price = parser.find('span', class_="s-item__price")
+        if price:
+            price = price.text
+        else:
+            price = ' '
         image = parser.find('img', class_="s-item__image-img").get('src')
         if image == 'https://ir.ebaystatic.com/cr/v/c1/s_1x2.gif':
             soup = self.make_soup(link)
